@@ -1,5 +1,5 @@
 {
-    "name":        "gamernetwork/yolk-logger",
+    "name":        "gamernetwork/yolk-log",
     "description": "Gamer Network's PHP logging component",
     "keywords":    ["logging", "logger", "eurogamer", "gamer network"],
     "license":     "MIT",
