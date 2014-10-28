@@ -5,7 +5,7 @@ A simple PSR-3 logging library. Currently supports output to the standard PHP er
 
 ## Requirements
 
-This library requires PHP 5.4 and the PSR-3 reference logger (psr/log).
+This library requires PHP 5.4 or later, the Yolk Contracts package (```gamernetwork/yolk-contracts```) and the PSR-3 reference logger (```psr/log```).
 
 ## Installation
 
