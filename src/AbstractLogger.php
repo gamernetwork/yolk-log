@@ -11,7 +11,7 @@
 
 namespace yolk\log;
 
-use Psr\Log\LoggerInterface;
+use yolk\contracts\log\LoggerInterface;
 
 /**
  * Base logger class that defines the types of message that can be logged and

@@ -22,6 +22,8 @@ class LogLevel {
 	const INFO      = 7;
 	const DEBUG     = 8;
 
+	private function __construct() {}
+
 }
 
 // EOF
