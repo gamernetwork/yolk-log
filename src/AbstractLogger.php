@@ -196,12 +196,12 @@ abstract class AbstractLogger implements LoggerInterface {
 	/**
 	 * Make sure we have a valid level.
 	 * @param  integer|string $level a 
-	 * @return [type]        [description]
+	 * @return integer
 	 */
 	protected function getLevel( $level ) {
 		if( $l = (int) $level )
 			return $l;
-		elseif( $l = array_search($level, $this->level) )
+		elseif( $l = array_search($level, $this->levels) )
 			return $l;
 		else
 			throw new \InvalidArgumentException("Invalid log level: '{$level}'");
