@@ -20,7 +20,7 @@ Yolk Logger is open-sourced software licensed under the MIT license
 ## Quick Start
 
 ```php
-use yolk\log\LoggerFactory();
+use yolk\log\LogLevel;
 
 // create a factory
 $f = new LoggerFactory();
