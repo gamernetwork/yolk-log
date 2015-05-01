@@ -32,7 +32,7 @@ abstract class StreamLogger extends AbstractLogger {
 	public function __construct( $stream ) {
 
 		if( !is_resource($stream) || (get_resource_type($stream) != 'stream') )
-			throw new Exception('Not a valid stream:'. Exception::info($stream));
+			throw new Exception('Not a valid stream: '. gettype($stream));
 
 		$this->stream = $stream;
 

@@ -243,21 +243,17 @@ abstract class AbstractLogger implements LoggerInterface {
 	 * @return string
 	 */
 	protected function getPrefix( $level ) {
-		switch( $level ) {
-			case LogLevel::EMERGENCY:
-			case LogLevel::ALERT:
-			case LogLevel::CRITICAL:
-				return '[!!]';
-			case LogLevel::ERROR:
-			case LogLevel::WARNING:
-				return '[**]';
-			case LogLevel::NOTICE:
-			case LogLevel::INFO:
-				return '[--]';
-			case LogLevel::DEBUG:
-				return '[..]';
-		}
-		return '';
+		$prefixes = [
+			LogLevel::EMERGENCY => '[!!]',
+			LogLevel::ALERT     => '[!!]',
+			LogLevel::CRITICAL  => '[!!]',
+			LogLevel::ERROR     => '[**]',
+			LogLevel::WARNING   => '[**]',
+			LogLevel::NOTICE    => '[--]',
+			LogLevel::INFO      => '[--]',
+			LogLevel::DEBUG     => '[..]',
+		];
+		return isset($prefixes[$level]) ? $prefixes[$level] : '[??]';
 	}
 
 }
