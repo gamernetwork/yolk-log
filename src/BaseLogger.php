@@ -11,13 +11,13 @@
 
 namespace yolk\log;
 
-use yolk\contracts\log\LoggerInterface;
+use yolk\contracts\log\Logger;
 
 /**
  * Base logger class that defines the types of message that can be logged and
  * provides shortcut functions to log messages of a particular type.
  */
-abstract class AbstractLogger implements LoggerInterface {
+abstract class BaseLogger implements Logger {
 
 	/**
 	 * Messages above this level will not be logged.

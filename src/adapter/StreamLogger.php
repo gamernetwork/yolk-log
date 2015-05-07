@@ -11,13 +11,13 @@
 
 namespace yolk\log\adapter;
 
-use yolk\log\AbstractLogger;
+use yolk\log\BaseLogger;
 use yolk\log\Exception;
 
 /**
  * Provides logging to a stream resource.
  */
-abstract class StreamLogger extends AbstractLogger {
+abstract class StreamLogger extends BaseLogger {
 
 	/**
 	 * Open log file.

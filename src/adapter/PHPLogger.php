@@ -11,12 +11,12 @@
 
 namespace yolk\log\adapter;
 
-use yolk\log\AbstractLogger;
+use yolk\log\BaseLogger;
 
 /**
  * Provides logging to the default PHP error log.
  */
-class PHPLogger extends AbstractLogger {
+class PHPLogger extends BaseLogger {
 
 	protected function output( $level, $msg ) {
 		error_log(rtrim($msg));

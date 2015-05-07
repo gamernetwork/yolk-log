@@ -11,10 +11,10 @@
 
 namespace yolk\log;
 
-use yolk\contracts\log\LoggerFactoryInterface;
-use yolk\contracts\log\LoggerInterface;
+use yolk\contracts\log\LoggerFactory;
+use yolk\contracts\log\Logger;
 
-class LoggerFactory implements LoggerFactoryInterface {
+class GenericLoggerFactory implements LoggerFactory {
 
 	protected $classes;
 
@@ -117,8 +117,8 @@ class LoggerFactory implements LoggerFactoryInterface {
 		$log = new $class($arg1, $arg2, $arg3);
 
 		// check the instance implements the correct interface
-		if( !$log instanceof LoggerInterface )
-			throw new Exception(sprintf("Class '\\%s' does not implement yolk\contracts\log\LoggerInterface", $class));
+		if( !$log instanceof Logger )
+			throw new Exception(sprintf("Class '\\%s' does not implement yolk\contracts\log\Logger", $class));
 
 		return $log;
 

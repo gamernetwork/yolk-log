@@ -11,12 +11,12 @@
 
 namespace yolk\log\adapter;
 
-use yolk\log\AbstractLogger;
+use yolk\log\BaseLogger;
 
 /**
  * Provides logging to a black hole.
  */
-class NullLogger extends AbstractLogger {
+class NullLogger extends BaseLogger {
 
 	protected function output( $level, $msg ) {
 		return;

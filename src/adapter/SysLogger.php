@@ -11,13 +11,13 @@
 
 namespace yolk\log\adapter;
 
-use yolk\log\AbstractLogger;
+use yolk\log\BaseLogger;
 use yolk\log\LogLevel;
 
 /**
  * Provides logging to syslog.
  */
-class SysLogger extends AbstractLogger {
+class SysLogger extends BaseLogger {
 	
 	/**
 	 * Value prefixed to all messages.
