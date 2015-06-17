@@ -60,3 +60,30 @@ $l->info(
 	]
 );
 ```
+## Using as part of yolk Services
+
+In your config file, put something like this:
+
+```
+$config['logs'] = array(
+	// log using error_log for cli-server
+	'log' => array( 'type' => 'syslog', 'threshold' => yolk\log\LogLevel::WARN ),
+	'audit' => array( 'type' => 'file', 'file' => '/var/log/audit.log', 'threshold' => yolk\log\LogLevel::INFO )
+);
+``` 
+
+...and use with:
+
+```
+$this->services["log.log"]->debug( "Dispatching for: '" . $request->uri() . "'");
+$this->services["log.audit"]->info( "So and so did something or other");
+```
+
+If you're working with php cli-server, STDOUT and STDERR not available, but try this:
+
+```
+$config['logs'] = array(
+	// log using error_log for cli-server
+	'log' => array( 'type' => 'php', 'threshold' => yolk\log\LogLevel::DEBUG )
+);
+```
