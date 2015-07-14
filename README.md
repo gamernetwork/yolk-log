@@ -1,5 +1,6 @@
-
 # Yolk Logger
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gamernetwork/yolk-log/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gamernetwork/yolk-log/?branch=master)
 
 A simple PSR-3 logging library. Currently supports output to the standard PHP error log, files, stdout, stderr and syslog.
 
