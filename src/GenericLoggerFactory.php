@@ -69,6 +69,10 @@ class GenericLoggerFactory implements LoggerFactory {
 				$log = $this->createStdOutLogger($config['threshold']);
 				break;
 
+			case 'null':
+				$log = $this->createNullLogger($config['threshold']);
+				break;
+
 			default:
 				throw new Exception("Invalid logger type: {$type}");
 		}
