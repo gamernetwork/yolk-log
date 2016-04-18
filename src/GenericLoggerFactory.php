@@ -33,82 +33,117 @@ class GenericLoggerFactory implements LoggerFactory {
 
 	public function create( $config ) {
 
-		// if config isn't an array then treat it as the log type
-		// - some adapters don't require configuration options
-		if( !is_array($config) ) {
-			$config = array(
-				'type' => $config,
-			);
+		$config = $this->checkConfig($config);
+
+		$factories = [
+			'php'    => 'createPHPLogger',
+			'file'   => 'createFileLogger',
+			'syslog' => 'createSysLogger',
+			'stderr' => 'createStdErrLogger',
+			'stdout' => 'createStdOutLogger',
+			'null'   => 'createNullLogger',
+		];
+
+		if( empty($factories[$config['type']]) )
+			throw new Exception("Invalid logger type: {$config['type']}");
+
+		$factory = $factories[$config['type']];
+
+		if( $config['type'] == 'file' ) {
+			$config = $config + ['file' => ''];
+			return $this->$factory($config['file'], $config['threshold']);
 		}
-		
-		$config = $config + array(
-			'type'   => '',
-			'threshold' => LogLevel::WARNING,
-		);
-
-		switch ( $config['type'] ) {
-			case 'php':
-				$log = $this->createPHPLogger($config['threshold']);
-				break;
-
-			case 'file':
-				$config = $config + array('file' => '');
-				$log = $this->createFileLogger($config['file'], $config['threshold']);
-				break;
-
-			case 'syslog':
-				$config = $config + array('prefix' => '');
-				$log = $this->createSysLogger($config['prefix'], $config['threshold']);
-				break;
-
-			case 'stderr':
-				$log = $this->createStdErrLogger($config['threshold']);
-				break;
-
-			case 'stdout':
-				$log = $this->createStdOutLogger($config['threshold']);
-				break;
-
-			case 'null':
-				$log = $this->createNullLogger($config['threshold']);
-				break;
-
-			default:
-				throw new Exception("Invalid logger type: {$type}");
+		elseif( $config['type'] == 'syslog' ) {
+			$config = $config + ['prefix' => ''];
+			return $this->$factory($config['prefix'], $config['threshold']);
 		}
 
-		return $log;
+		return $this->$factory($config['threshold']);
 
 	}
 
+	/**
+	 * Create a logger that outputs to the standard PHP error log.
+	 * @param  integer $threshold
+	 * @return Logger
+	 */
 	public function createPHPLogger( $threshold = LogLevel::WARNING ) {
 		return $this->createLogger('php')
 			->setThreshold($threshold);
 	}
 
+	/**
+	 * Create a logger that outputs to the specified file.
+	 * @param  integer $threshold
+	 * @return Logger
+	 */
 	public function createFileLogger( $file, $threshold = LogLevel::WARNING ) {
 		return $this->createLogger('file', $file)
 			->setThreshold($threshold);
 	}
 
+	/**
+	 * Create a logger that outputs to Syslog.
+	 * @param  integer $threshold
+	 * @return Logger
+	 */
 	public function createSysLogger( $prefix = '', $threshold = LogLevel::WARNING ) {
 		return $this->createLogger('syslog', $prefix)
 			->setThreshold($threshold);
 	}
 
+	/**
+	 * Create a logger that outputs to StdOut.
+	 * The StdOut logger is only available when running via the command-line.
+	 * @param  integer $threshold
+	 * @return Logger
+	 */
 	public function createStdOutLogger( $threshold = LogLevel::WARNING ) {
 		return $this->createLogger('stdout')
 			->setThreshold($threshold);
 	}
 
+	/**
+	 * Create a logger that outputs to StdErr.
+	 * The StdErr logger is only available when running via the command-line.
+	 * @param  integer $threshold
+	 * @return Logger
+	 */
 	public function createStdErrLogger( $threshold = LogLevel::WARNING ) {
 		return $this->createLogger('stderr')
 			->setThreshold($threshold);
 	}
 
+	/**
+	 * Create a logger that performs no output.
+	 * @param  integer $threshold
+	 * @return Logger
+	 */
 	public function createNullLogger( $threshold = LogLevel::WARNING ) {
 		return $this->createLogger('null')
 			->setThreshold($threshold);
+	}
+
+	/**
+	 * Ensure the configuration is in a consistant format.
+	 * @param  array|string $config
+	 * @return array
+	 */
+	protected function checkConfig( $config ) {
+
+		// if config isn't an array then treat it as the log type
+		// - some adapters don't require configuration options
+		if( !is_array($config) ) {
+			$config = [
+				'type' => $config,
+			];
+		}
+
+		$config = $config + [
+			'type'   => '',
+			'threshold' => LogLevel::WARNING,
+		];
+
 	}
 
 	protected function createLogger( $type, $arg1 = null, $arg2 = null, $arg3 = null ) {

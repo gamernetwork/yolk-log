@@ -66,103 +66,103 @@ abstract class BaseLogger implements Logger {
 	}
 
 	/**
-     * System is unusable.
-     * 
-     * @param string   $msg
-     * @param array    $context
-     * @return $this
-     */
-    public function emergency( $msg, array $context = [] ) {
-    	return $this->log(LogLevel::EMERGENCY, $msg, $context);
-    }
+	 * System is unusable.
+	 * 
+	 * @param string   $msg
+	 * @param array    $context
+	 * @return $this
+	 */
+	public function emergency( $msg, array $context = [] ) {
+		return $this->log(LogLevel::EMERGENCY, $msg, $context);
+	}
 
-    /**
-     * Action must be taken immediately.
-     *
-     * Example: Entire website down, database unavailable, etc. This should
-     * trigger the SMS alerts and wake you up.
-     *
-     * @param string   $msg
-     * @param array    $context
-     * @return $this
-     */
-    public function alert( $msg, array $context = [] ) {
-    	return $this->log(LogLevel::ALERT, $msg, $context);
-    }
+	/**
+	 * Action must be taken immediately.
+	 *
+	 * Example: Entire website down, database unavailable, etc. This should
+	 * trigger the SMS alerts and wake you up.
+	 *
+	 * @param string   $msg
+	 * @param array    $context
+	 * @return $this
+	 */
+	public function alert( $msg, array $context = [] ) {
+		return $this->log(LogLevel::ALERT, $msg, $context);
+	}
 
-    /**
-     * Critical conditions.
-     *
-     * Example: Application component unavailable, unexpected exception.
-     *
-     * @param string   $msg
-     * @param array    $context
-     * @return $this
-     */
-    public function critical( $msg, array $context = [] ) {
-    	return $this->log(LogLevel::CRITICAL, $msg, $context);
-    }
+	/**
+	 * Critical conditions.
+	 *
+	 * Example: Application component unavailable, unexpected exception.
+	 *
+	 * @param string   $msg
+	 * @param array    $context
+	 * @return $this
+	 */
+	public function critical( $msg, array $context = [] ) {
+		return $this->log(LogLevel::CRITICAL, $msg, $context);
+	}
 
-    /**
-     * Runtime errors that do not require immediate action but should typically
-     * be logged and monitored.
-     *
-     * @param string   $msg
-     * @param array    $context
-     * @return $this
-     */
-    public function error( $msg, array $context = [] ) {
-    	return $this->log(LogLevel::ERROR, $msg, $context);
-    }
+	/**
+	 * Runtime errors that do not require immediate action but should typically
+	 * be logged and monitored.
+	 *
+	 * @param string   $msg
+	 * @param array    $context
+	 * @return $this
+	 */
+	public function error( $msg, array $context = [] ) {
+		return $this->log(LogLevel::ERROR, $msg, $context);
+	}
 
-    /**
-     * Exceptional occurrences that are not errors.
-     *
-     * Example: Use of deprecated APIs, poor use of an API, undesirable things
-     * that are not necessarily wrong.
-     *
-     * @param string   $msg
-     * @param array    $context
-     * @return $this
-     */
-    public function warning( $msg, array $context = [] ) {
-    	return $this->log(LogLevel::WARNING, $msg, $context);
-    }
+	/**
+	 * Exceptional occurrences that are not errors.
+	 *
+	 * Example: Use of deprecated APIs, poor use of an API, undesirable things
+	 * that are not necessarily wrong.
+	 *
+	 * @param string   $msg
+	 * @param array    $context
+	 * @return $this
+	 */
+	public function warning( $msg, array $context = [] ) {
+		return $this->log(LogLevel::WARNING, $msg, $context);
+	}
 
-    /**
-     * Normal but significant events.
-     *
-     * @param string   $msg
-     * @param array    $context
-     * @return $this
-     */
-    public function notice( $msg, array $context = [] ) {
-    	return $this->log(LogLevel::NOTICE, $msg, $context);
-    }
+	/**
+	 * Normal but significant events.
+	 *
+	 * @param string   $msg
+	 * @param array    $context
+	 * @return $this
+	 */
+	public function notice( $msg, array $context = [] ) {
+		return $this->log(LogLevel::NOTICE, $msg, $context);
+	}
 
-    /**
-     * Interesting events.
-     *
-     * Example: User logs in, SQL logs.
-     *
-     * @param string   $msg
-     * @param array    $context
-     * @return $this
-     */
-    public function info( $msg, array $context = [] ) {
-    	return $this->log(LogLevel::INFO, $msg, $context);
-    }
+	/**
+	 * Interesting events.
+	 *
+	 * Example: User logs in, SQL logs.
+	 *
+	 * @param string   $msg
+	 * @param array    $context
+	 * @return $this
+	 */
+	public function info( $msg, array $context = [] ) {
+		return $this->log(LogLevel::INFO, $msg, $context);
+	}
 
-    /**
-     * Detailed debug information.
-     *
-     * @param string   $msg
-     * @param array    $context
-     * @return $this
-     */
-    public function debug( $msg, array $context = [] ) {
-    	return $this->log(LogLevel::DEBUG, $msg, $context);
-    }
+	/**
+	 * Detailed debug information.
+	 *
+	 * @param string   $msg
+	 * @param array    $context
+	 * @return $this
+	 */
+	public function debug( $msg, array $context = [] ) {
+		return $this->log(LogLevel::DEBUG, $msg, $context);
+	}
 
 	/**
 	 * Log a message of a specific level.
