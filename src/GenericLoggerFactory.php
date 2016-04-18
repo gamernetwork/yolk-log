@@ -144,8 +144,18 @@ class GenericLoggerFactory implements LoggerFactory {
 			'threshold' => LogLevel::WARNING,
 		];
 
+		return $config;
+
 	}
 
+	/**
+	 * Create a Logger instance.
+	 * @param  string $type
+	 * @param  mixed $arg1
+	 * @param  mixed $arg2
+	 * @param  mixed $arg3
+	 * @return Logger
+	 */
 	protected function createLogger( $type, $arg1 = null, $arg2 = null, $arg3 = null ) {
 
 		// check the class exists before we try and use it
