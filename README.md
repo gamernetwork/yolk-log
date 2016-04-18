@@ -1,22 +1,28 @@
 # Yolk Logger
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gamernetwork/yolk-log/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gamernetwork/yolk-log/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gamernetwork/yolk-log/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/gamernetwork/yolk-log/?branch=develop)
 
-A simple PSR-3 logging library. Currently supports output to the standard PHP error log, files, stdout, stderr and syslog.
+A simple [PSR-3](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md) logging library with support for the following outputs:
+* PHP error log
+* Files
+* Null
+* Stdout (CLI only)
+* Stderr (CLI only)
+* Syslog
 
 ## Requirements
 
-This library requires PHP 5.4 or later, the Yolk Contracts package (```gamernetwork/yolk-contracts```) and the PSR-3 reference logger (```psr/log```).
+This library requires PHP 5.4 or later, the Yolk Contracts package (`gamernetwork/yolk-contracts`) and the PSR-3 reference logger (`psr/log`).
 
 ## Installation
 
-It is installable and autoloadable via Composer as gamer-network/yolk-logger.
+It is installable and autoloadable via Composer as `gamer-network/yolk-logger`.
 
-Alternatively, download a release or clone this repository, and add the \yolk\log and \Psr\Log namespaces to an autoloader.
+Alternatively, download a release or clone this repository, and add the `\yolk\log` and `\Psr\Log` namespaces to an autoloader.
 
 ## License
 
-Yolk Logger is open-sourced software licensed under the MIT license
+Yolk Logger is open-sourced software licensed under the MIT license.
 
 ## Quick Start
 
@@ -59,32 +65,5 @@ $l->info(
 		'user' => 'Gary',
 		'time' => '2014-10-02 12:34:56',
 	]
-);
-```
-## Using as part of yolk Services
-
-In your config file, put something like this:
-
-```
-$config['logs'] = array(
-	// log using error_log for cli-server
-	'log' => array( 'type' => 'syslog', 'threshold' => yolk\log\LogLevel::WARN ),
-	'audit' => array( 'type' => 'file', 'file' => '/var/log/audit.log', 'threshold' => yolk\log\LogLevel::INFO )
-);
-``` 
-
-...and use with:
-
-```
-$this->services["log.log"]->debug( "Dispatching for: '" . $request->uri() . "'");
-$this->services["log.audit"]->info( "So and so did something or other");
-```
-
-If you're working with php cli-server, STDOUT and STDERR not available, but try this:
-
-```
-$config['logs'] = array(
-	// log using error_log for cli-server
-	'log' => array( 'type' => 'php', 'threshold' => yolk\log\LogLevel::DEBUG )
 );
 ```
